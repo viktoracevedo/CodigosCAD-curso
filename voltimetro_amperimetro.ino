@@ -35,12 +35,11 @@ void loop() {
 }
  
 void volt() {
-  for(int i=1; i<=150; i++  )//bucle para tomar varias muestras
-  {
-  input = analogRead (entradaV); //lee el pin
-  vout = (input*1.1)/1023; //operacion para transformar los valores
-  vin = vout / (R2 / (R1 + R2)); //convierte los valores a su voltaje de origen
-  vin2=vin2+vin; // suma las 150 muestras
+  for(int i=1; i<=150; i++  ){//bucle para tomar varias muestras
+   input = analogRead (entradaV); //lee el pin
+   vout = (input*1.1)/1023; //operacion para transformar los valores
+   vin = vout / (R2 / (R1 + R2)); //convierte los valores a su voltaje de origen
+   vin2=vin2+vin; // suma las 150 muestras
   }
   vin = vin2/150;// se promedia las muestras tomadas
   vin2=0;// reseta la variable auxiliar
@@ -64,48 +63,42 @@ void volt() {
  
 void amp() {
   
-  for(int i=1; i<=150; i++  )//bucle para tomar varias muestras
-  {
-  input = analogRead (entradaI); //lee el pin
-  vout = (input*1.1)/1023;//operacion para transformar los valores
-  iin = vout / shunt; //aplicacion de la ley ohm
-  iin2=iin2+iin; // suma las 150 muestras
+  for(int i=1; i<=150; i++  ){//bucle para tomar varias muestras
+   input = analogRead (entradaI); //lee el pin
+   vout = (input*1.1)/1023;//operacion para transformar los valores
+   iin = vout / shunt; //aplicacion de la ley ohm
+   iin2=iin2+iin; // suma las 150 muestras
   }
   iin = iin2/150;// se promedia las muestras tomadas
   iin2=0;// reseta la variable auxiliar
   //codigo para mostrarlo en el display
   if (iin<=0.005){iin = 0;}//corriente cero
   //pone la escala correcta
-  if (iin<=0.01)
-  {
+  if (iin<=0.01){
     lcd.setCursor (0,1);
     lcd.print (iin*1000);
     lcd.setCursor (4,1);
     lcd.print ("mA  ");
   }
-  else if (iin<=0.1)
-  {
+  else if (iin<=0.1){
     lcd.setCursor (0,1);
     lcd.print (iin*1000);
     lcd.setCursor (5,1);
     lcd.print ("mA ");
   }
-  else if (iin<=1)
-  {
+  else if (iin<=1){
     lcd.setCursor (0,1);
     lcd.print (iin*1000);
     lcd.setCursor (6,1);
     lcd.print ("mA");
   }
-  else if (iin==0)
-  {
+  else if (iin==0){
     lcd.setCursor (0,1);
     lcd.print (iin);
     lcd.setCursor (4,1);
     lcd.print ("mA   ");
   }
-  else if (iin<10)
-  {
+  else if (iin<10){
     lcd.setCursor (0,1);
     lcd.print (iin);
     lcd.setCursor (4,1);
