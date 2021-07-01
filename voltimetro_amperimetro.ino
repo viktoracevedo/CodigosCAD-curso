@@ -38,7 +38,7 @@ void volt() {
   for(int i=1; i<=150; i++  )//bucle para tomar varias muestras
   {
   input = analogRead (entradaV); //lee el pin
-  vout = (input*1.1)/1024; //operacion para transformar los valores
+  vout = (input*1.1)/1023; //operacion para transformar los valores
   vin = vout / (R2 / (R1 + R2)); //convierte los valores a su voltaje de origen
   vin2=vin2+vin; // suma las 150 muestras
   }
@@ -67,7 +67,7 @@ void amp() {
   for(int i=1; i<=150; i++  )//bucle para tomar varias muestras
   {
   input = analogRead (entradaI); //lee el pin
-  vout = (input*1.1)/1024;//operacion para transformar los valores
+  vout = (input*1.1)/1023;//operacion para transformar los valores
   iin = vout / shunt; //aplicacion de la ley ohm
   iin2=iin2+iin; // suma las 150 muestras
   }
